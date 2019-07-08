@@ -1,5 +1,5 @@
 import Express from 'express';
-import auth from '../auth/index';
+import { auth } from '../auth/index.mjs';
 import { index, add, remove } from '../controllers/Post.controller.mjs';
 
 const router = Express.Router();

@@ -21,7 +21,7 @@ export const login = async (req, res) => {
   if (!validPassword) return res.json({ error: 'Mauvais mot de passe' });
 
   const token = jwt.sign({ _id: userExist._id }, process.env.JWTSECRET);
-  res.header('auth-token', token).json(token);
+  res.header('auth-token', token).json({ token });
 };
 
 export const register = async (req, res) => {
