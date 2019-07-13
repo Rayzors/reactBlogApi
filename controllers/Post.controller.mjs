@@ -7,9 +7,17 @@ export const index = async (req, res) => {
   try {
     let response;
     if (req.params.type) {
-      response = await Post.find({ type: req.params.type });
+      response = await Post.find({ type: req.params.type }, null, {
+        sort: {
+          date: -1,
+        },
+      });
     } else {
-      response = await Post.find();
+      response = await Post.find(null, null, {
+        sort: {
+          date: -1,
+        },
+      });
     }
     return res.json(response);
   } catch (error) {
