@@ -25,7 +25,8 @@ export const add = async (req, res) => {
     try {
       const response = await Post.findOneAndUpdate(
         { _id: req.body._id },
-        { ...req.body }
+        { ...req.body },
+        { new: true }
       );
       return res.json(response);
     } catch (error) {
