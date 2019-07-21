@@ -1,8 +1,7 @@
 import Mongoose from 'mongoose';
 
-export default Mongoose.model(
-  'User',
-  new Mongoose.Schema({
+const UserSchema = new Mongoose.Schema(
+  {
     name: {
       type: String,
       required: true,
@@ -16,5 +15,15 @@ export default Mongoose.model(
       required: true,
     },
     createdAt: { type: Date, default: Date.now },
-  })
+  },
+  { toJSON: { virtuals: true, versionKey: false } }
 );
+
+UserSchema.virtual('posts', {
+  ref: 'Post',
+  localField: '_id',
+  foreignField: 'author',
+  justOne: false,
+});
+
+export default Mongoose.model('User', UserSchema);

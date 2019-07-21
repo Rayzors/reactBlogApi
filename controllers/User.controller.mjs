@@ -6,6 +6,15 @@ import {
   loginValidation,
 } from '../validations/userValidation.mjs';
 
+export const getAllUsers = async (req, res) => {
+  try {
+    const response = await User.find().populate('posts');
+    return res.json(response);
+  } catch (error) {
+    return res.json({ error });
+  }
+};
+
 export const login = async (req, res) => {
   const { error } = loginValidation(req.body);
   if (error) return res.json({ error: error.details[0].message });

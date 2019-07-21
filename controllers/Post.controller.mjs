@@ -11,13 +11,13 @@ export const index = async (req, res) => {
         sort: {
           date: -1,
         },
-      });
+      }).populate('author', 'name');
     } else {
       response = await Post.find(null, null, {
         sort: {
           date: -1,
         },
-      });
+      }).populate('author', 'name');
     }
     return res.json(response);
   } catch (error) {
